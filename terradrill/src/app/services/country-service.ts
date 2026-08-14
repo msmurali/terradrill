@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { COUNTRIES } from './countries';
+import { COUNTRIES } from '../core/countries';
 import { Country } from '../interfaces/country.interface';
 
 /** Widths flagcdn.com serves; 640 is enough for the flag card at 2x. */
