@@ -1,0 +1,44 @@
+@use 'mixins' as *;
+
+.mode-switcher {
+  @include pill;
+  border-radius: var(--radius-full);
+  padding: var(--space-5) var(--space-1);
+
+  .mode {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .mode-icon {
+    display: none;
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Below this width the labels are dropped for icons. */
+  @media (max-width: 560px) {
+    .mode {
+      display: inline-flex;
+      padding: var(--space-2);
+    }
+
+    .mode-icon {
+      display: block;
+    }
+
+    .mode-label {
+      display: none;
+    }
+  }
+
+  .active {
+    background: var(--accent);
+    color: var(--base);
+    font-weight: 700;
+    box-shadow: var(--shadow-glow);
+  }
+}

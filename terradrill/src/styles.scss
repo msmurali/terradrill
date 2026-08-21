@@ -1,50 +1,107 @@
 :root {
-    --base: #0a0d16;
-    --accent-from:#16a34a;
-    --accent-to: #4ade80;
-    --accent: linear-gradient(135deg, var(--accent-from), var(--accent-to));
-    --valid:#34d399;
-    --invalid:#fb7185;
+  --base: #0a0d16;
+  --accent-from: #16a34a;
+  --accent-to: #4ade80;
+  --accent: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+  --accent-glow: rgba(74, 222, 128, 0.35);
+  --valid: #34d399;
+  --invalid: #fb7185;
 
-    /* text */
-    --font: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    --text-heading: #f2f5fb;
-    --text-body: #e7ecf5;
-    --text-muted: rgba(231, 236, 245, 0.55);
+  /* text */
+  --font: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --text-heading: #f2f5fb;
+  --text-body: #e7ecf5;
+  --text-muted: rgba(231, 236, 245, 0.55);
 
-    /* shape */
-    --radius-sm: 8px;
-    --radius: 14px;
-    --radius-lg: 22px;
-    --radius-pill: 999px;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-    --shadow-glow: 0 0 24px var(--accent-glow);
+  /* shape */
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-full: 999px;
+  --radius-pill: 999px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 14px var(--accent-glow);
 
-    /* spacing */
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 16px;
-    --space-5: 24px;
-    --space-6: 32px;
-    --space-7: 48px;
+  /* spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* button/label/badge */
+  --background-btn: #ffffff0d;
+  --border-btn: 1px solid #ffffff14;
+  --pill-height: 44px;
+
+  /* motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration: 200ms;
 }
 
-*, *::before, *::after {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+
+  /* Listed explicitly, never `all` — layout properties reflow every frame. */
+  transition:
+    background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease),
+    opacity var(--duration) var(--ease),
+    transform var(--duration) var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
-    margin: 0;
-    min-height: 100dvh;
-    font-family: var(--font);
-    font-weight: 400;
-    background: var(--base);
-    color: var(--text-body);
-    -webkit-font-smoothing: antialiased;
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font);
+  font-weight: 400;
+  background: var(--base);
+  color: var(--text-body);
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: var(--text-heading);
-    font-weight: 700;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-heading);
+  font-weight: 700;
+}
+
+img {
+  padding: 0;
+  margin: 0;
+}
+
+.btn-group {
+  display: flex;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

@@ -1,0 +1,47 @@
+<div class="mode-switcher">
+  @for (mode of modes(); track mode.mode) {
+    <span class="mode" [class.active]="true" [attr.aria-label]="mode.label" [attr.title]="mode.label">
+      <svg class="mode-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        @switch (mode.mode) {
+          @case ('flag') {
+            <path
+              d="M4 22V3M4 4h13l-2.5 4L17 12H4"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          }
+          @case ('world_map') {
+            <path
+              d="M12 21a9 9 0 100-18 9 9 0 000 18ZM3 12h18M12 3a13.5 13.5 0 010 18 13.5 13.5 0 010-18Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          }
+          @case ('quiz') {
+            <path
+              d="M9 8h12M9 12h12M9 16h12M4 8h.01M4 12h.01M4 16h.01"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          }
+          @case ('voice') {
+            <path
+              d="M12 2a3 3 0 013 3v6a3 3 0 01-6 0V5a3 3 0 013-3ZM19 10v1a7 7 0 01-14 0v-1M12 19v3"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          }
+        }
+      </svg>
+      <span class="mode-label">{{ mode.label }}</span>
+    </span>
+  }
+</div>

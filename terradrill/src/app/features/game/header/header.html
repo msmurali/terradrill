@@ -1,0 +1,35 @@
+<header>
+  <div class="logo-wrapper">
+    <!-- logo -->
+    <div class="logo">
+      <img src="assets/globe.svg" alt="TerraDrill" />
+      <h1>Terra</h1>
+      <h1>Drill</h1>
+    </div>
+  </div>
+  <div class="btn-group">
+    <!-- score -->
+    <div class="score">
+      <span class="text-muted">Score</span>
+      <span>2</span>
+      <span>/</span>
+      <span>7</span>
+    </div>
+    <!-- strike -->
+    <div class="strike">
+      <img src="assets/fire.svg" alt="TerraDrill" />
+      <span>0</span>
+    </div>
+    <!-- sound -->
+    <button class="sound-btn">
+      <img src="assets/speaker.svg" alt="Sound On" />
+      <!-- <img src="assets/speaker-cross.svg" alt="Sound Off"> -->
+    </button>
+  </div>
+</header>
+
+<!-- Mode Switcher -->
+<div class="mode">
+  <app-mode-switcher [modes]="gameModes" />
+  <app-mode-switcher [modes]="answerModes"/>
+</div>

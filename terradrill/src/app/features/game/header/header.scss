@@ -1,0 +1,71 @@
+@use 'mixins' as *;
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      padding-right: var(--space-2);
+    }
+
+    h1:last-child {
+      color: var(--accent-from);
+    }
+  }
+
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-4);
+    margin-left: auto;
+
+    img {
+      display: block;
+      height: 18px;
+      width: auto;
+    }
+
+    .score {
+      @include pill;
+      padding: 0 var(--space-5);
+      border-radius: var(--radius-full);
+    }
+
+    .strike {
+      @include pill;
+      padding: 0 var(--space-5);
+      border-radius: var(--radius-full);
+    }
+
+    .sound-btn {
+      @include pill;
+      width: var(--pill-height);
+      padding: 0;
+      outline: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.mode {
+  padding: var(--space-3) var(--space-6);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

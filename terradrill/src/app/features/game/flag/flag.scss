@@ -1,0 +1,45 @@
+.flag-wrapper {
+  background-color: var(--background-btn);
+  margin: var(--space-6);
+  border: var(--border-btn);
+  border-radius: var(--radius-lg);
+
+  span {
+    display: inline-block;
+    padding: var(--space-6) 0 0 var(--space-6);
+    color: var(--text-muted);
+  }
+
+  .flag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem var(--space-6) 7rem var(--space-6);
+    position: relative;
+
+    img {
+      width: 60%;
+    }
+
+    .banner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--base);
+      opacity: 0.9;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      border-top: 1px solid var(--invalid);
+      padding: var(--space-6);
+
+      span {
+        padding: 0;
+        color: var(--invalid);
+      }
+
+      h1 {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

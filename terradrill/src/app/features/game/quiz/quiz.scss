@@ -1,0 +1,21 @@
+.quiz {
+  padding: var(--space-6);
+
+  &-question {
+    margin-top: 0;
+  }
+
+  &-option {
+    display: block;
+    background-color: var(--background-btn);
+    padding: var(--space-4) var(--space-6);
+    border: var(--border-btn);
+    border-radius: var(--radius);
+    margin-bottom: var(--space-4);
+    cursor: pointer;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
