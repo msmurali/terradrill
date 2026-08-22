@@ -1,6 +1,6 @@
 <div class="mode-switcher">
   @for (mode of modes(); track mode.mode) {
-    <span class="mode" [class.active]="true" [attr.aria-label]="mode.label" [attr.title]="mode.label">
+    <span class="mode" [class.active]="activeMode()?.mode === mode.mode" [attr.aria-label]="mode.label" [attr.title]="mode.label" (click)="onChangeMode(mode)">
       <svg class="mode-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         @switch (mode.mode) {
           @case ('flag') {

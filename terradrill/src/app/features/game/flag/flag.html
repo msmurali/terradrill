@@ -1,10 +1,18 @@
 <div class="flag-wrapper">
-  <span>ROUND 1</span>
+  <span>ROUND {{ round() || 0 }}</span>
   <div class="flag">
-    <img src="https://flagcdn.com/in.svg" alt="India" />
-    <div class="banner">
+    <img src="{{ flagSrc() }}" alt="{{ country()?.name || 'Flag' }}" />
+    @if (gameService.showInvalidBanner()) {
+      <div class="invalid-banner">
         <span>REMEMBER THIS ONE</span>
-        <h1>Saint Vincent and the Grenadines</h1>
-    </div>
+        <h1>{{ country()?.name }}</h1>
+      </div>
+    }
+    @if (gameService.showValidBanner()) {
+      <div class="valid-banner">
+        <span>CORRECT</span>
+        <h1>{{ country()?.name }}</h1>
+      </div>
+    }
   </div>
 </div>

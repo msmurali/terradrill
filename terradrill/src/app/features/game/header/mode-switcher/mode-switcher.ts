@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Mode } from '../../../../interfaces/mode';
 
 @Component({
@@ -8,6 +8,11 @@ import { Mode } from '../../../../interfaces/mode';
   styleUrl: './mode-switcher.scss',
 })
 export class ModeSwitcher {
-  modes = input<Mode[]>();
-  activeMode = input<Mode>();
+  modes = input.required<Mode[]>();
+  activeMode = input.required<Mode>();
+  modeChanged = output<Mode>();
+
+  protected onChangeMode(mode: Mode) {
+    this.modeChanged.emit(mode);
+  }
 }

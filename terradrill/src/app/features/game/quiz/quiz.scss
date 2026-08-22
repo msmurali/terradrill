@@ -1,5 +1,5 @@
 .quiz {
-  padding: var(--space-6);
+  padding: 0;
 
   &-question {
     margin-top: 0;
@@ -13,9 +13,39 @@
     border-radius: var(--radius);
     margin-bottom: var(--space-4);
     cursor: pointer;
+    user-select: none;
 
     &:hover {
       background-color: transparent;
     }
+  }
+
+  .valid,
+  .valid:hover {
+    border-color: var(--valid);
+    background-color: color-mix(in srgb, var(--accent-from) 25%, transparent);
+  }
+
+  .invalid,
+  .invalid:hover {
+    border-color: var(--invalid);
+    background-color: color-mix(in srgb, var(--invalid) 25%, transparent);
+  }
+
+  .froozen,
+  .froozen:hover {
+    opacity: 0.8;
+    cursor: none;
+    pointer-events: none;
+  }
+
+  .skip-button{
+    outline: none;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    margin-top: var(--space-4);
+    user-select: none;
+    cursor: pointer;
   }
 }

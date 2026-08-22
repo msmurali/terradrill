@@ -11,6 +11,7 @@
     cursor: pointer;
     user-select: none;
     white-space: nowrap;
+    transition-property: background-color, border-color, box-shadow, opacity, transform;
   }
 
   .mode-icon {

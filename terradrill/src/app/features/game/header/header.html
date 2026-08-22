@@ -11,25 +11,36 @@
     <!-- score -->
     <div class="score">
       <span class="text-muted">Score</span>
-      <span>2</span>
+      <span>{{ gameService.score() }}</span>
       <span>/</span>
-      <span>7</span>
+      <span>{{ gameService.round() }}</span>
     </div>
     <!-- strike -->
     <div class="strike">
-      <img src="assets/fire.svg" alt="TerraDrill" />
-      <span>0</span>
+      <img src="assets/fire.svg" alt="Strike" />
+      <span>{{ gameService.strike() }}</span>
     </div>
     <!-- sound -->
-    <button class="sound-btn">
-      <img src="assets/speaker.svg" alt="Sound On" />
-      <!-- <img src="assets/speaker-cross.svg" alt="Sound Off"> -->
+    <button class="sound-btn" (click)="onChangeSound()">
+      @if (gameService.sound()) {
+        <img src="assets/speaker.svg" alt="Sound On" />
+      } @else {
+        <img src="assets/speaker-cross.svg" alt="Sound Off" />
+      }
     </button>
   </div>
 </header>
 
 <!-- Mode Switcher -->
 <div class="mode">
-  <app-mode-switcher [modes]="gameModes" />
-  <app-mode-switcher [modes]="answerModes"/>
+  <app-mode-switcher
+    [modes]="gameModes"
+    (modeChanged)="onGameModeChange($event)"
+    [activeMode]="gameService.gameMode()"
+  />
+  <app-mode-switcher
+    [modes]="answerModes"
+    (modeChanged)="onAnswerModeChange($event)"
+    [activeMode]="gameService.answerMode()"
+  />
 </div>

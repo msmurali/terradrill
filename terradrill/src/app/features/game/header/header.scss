@@ -1,16 +1,29 @@
 @use 'mixins' as *;
 
+/* The header component renders two stacked sections; space them with the
+   same rhythm the page shell uses. */
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
 header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-5) var(--space-6);
+  padding-inline: var(--gutter);
 
   .logo {
     display: flex;
     align-items: center;
+
+    /* Default heading margins would pad the header bar unevenly. */
+    h1 {
+      margin: 0;
+    }
 
     img {
       padding-right: var(--space-2);
@@ -63,7 +76,7 @@ header {
 }
 
 .mode {
-  padding: var(--space-3) var(--space-6);
+  padding-inline: var(--gutter);
   display: flex;
   flex-direction: row;
   justify-content: space-between;

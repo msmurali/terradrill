@@ -36,9 +36,18 @@
   --border-btn: 1px solid #ffffff14;
   --pill-height: 44px;
 
+  /* Page gutter — widened at the desktop breakpoint below. */
+  --gutter: var(--space-4);
+
   /* motion */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --duration: 200ms;
+}
+
+@media (min-width: 700px) {
+  :root {
+    --gutter: var(--space-6);
+  }
 }
 
 *,
@@ -72,9 +81,29 @@ body {
   min-height: 100dvh;
   font-family: var(--font);
   font-weight: 400;
-  background: var(--base);
   color: var(--text-body);
   -webkit-font-smoothing: antialiased;
+
+  /* Kills the blue-grey overlay mobile WebKit/Chromium paints on tap. */
+  -webkit-tap-highlight-color: transparent;
+
+  /* Ambient green glow at the top, echoed in the bottom-right corner. */
+  background-color: var(--base);
+  background-image:
+    radial-gradient(70rem 34rem at 8% -12%, rgba(22, 163, 74, 0.28), transparent 62%),
+    radial-gradient(52rem 26rem at 78% -16%, rgba(74, 222, 128, 0.12), transparent 62%),
+    radial-gradient(58rem 30rem at 108% 112%, rgba(22, 163, 74, 0.22), transparent 62%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Form controls don't inherit font from body — they fall back to a UA font. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
 }
 
 h1,

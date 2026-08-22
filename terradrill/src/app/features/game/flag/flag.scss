@@ -1,6 +1,5 @@
 .flag-wrapper {
   background-color: var(--background-btn);
-  margin: var(--space-6);
   border: var(--border-btn);
   border-radius: var(--radius-lg);
 
@@ -14,14 +13,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 6rem var(--space-6) 7rem var(--space-6);
+    padding: 5rem var(--space-6) 6rem var(--space-6);
     position: relative;
 
     img {
-      width: 60%;
+      width: 80%;
     }
 
-    .banner {
+    @mixin banner {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -29,12 +28,30 @@
       background-color: var(--base);
       opacity: 0.9;
       border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-      border-top: 1px solid var(--invalid);
       padding: var(--space-6);
+    }
+
+    .invalid-banner {
+      @include banner;
+      border-top: 1px solid var(--invalid);
 
       span {
         padding: 0;
         color: var(--invalid);
+      }
+
+      h1 {
+        margin-bottom: 0;
+      }
+    }
+
+    .valid-banner {
+      @include banner;
+      border-top: 1px solid var(--valid);
+
+      span {
+        padding: 0;
+        color: var(--valid);
       }
 
       h1 {
