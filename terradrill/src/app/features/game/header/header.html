@@ -22,7 +22,7 @@
     </div>
     <!-- sound -->
     <button class="sound-btn" (click)="onChangeSound()">
-      @if (gameService.sound()) {
+      @if (gameSoundService.sound()) {
         <img src="assets/speaker.svg" alt="Sound On" />
       } @else {
         <img src="assets/speaker-cross.svg" alt="Sound Off" />

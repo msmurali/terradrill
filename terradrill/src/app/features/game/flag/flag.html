@@ -4,14 +4,14 @@
     <img src="{{ flagSrc() }}" alt="{{ country()?.name || 'Flag' }}" />
     @if (gameService.showInvalidBanner()) {
       <div class="invalid-banner">
-        <span>REMEMBER THIS ONE</span>
-        <h1>{{ country()?.name }}</h1>
+        <h1>Not quite!</h1>
+        <span>It's {{ country()?.name }}</span>
       </div>
     }
     @if (gameService.showValidBanner()) {
       <div class="valid-banner">
-        <span>CORRECT</span>
-        <h1>{{ country()?.name }}</h1>
+        <h1>Correct!</h1>
+        <span>It's {{ country()?.name }}</span>
       </div>
     }
   </div>

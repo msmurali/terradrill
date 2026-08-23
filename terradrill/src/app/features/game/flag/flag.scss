@@ -1,5 +1,5 @@
 .flag-wrapper {
-  background-color: var(--background-btn);
+  background-color: color-mix(in srgb, var(--background-btn) 5%, transparent);
   border: var(--border-btn);
   border-radius: var(--radius-lg);
 
@@ -37,10 +37,10 @@
 
       span {
         padding: 0;
-        color: var(--invalid);
       }
 
       h1 {
+        color: var(--invalid);
         margin-bottom: 0;
       }
     }
@@ -51,10 +51,10 @@
 
       span {
         padding: 0;
-        color: var(--valid);
       }
 
       h1 {
+        color: var(--valid);
         margin-bottom: 0;
       }
     }

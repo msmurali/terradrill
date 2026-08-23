@@ -7,6 +7,8 @@ import { Mode } from '../interfaces/mode';
 import { randomNumberGenerator } from '../utils/random-number.util';
 import { CountryService } from './country-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { GameSound } from '../core/game-sound';
+import { GameSoundService } from './game-sound.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameService {
@@ -16,7 +18,7 @@ export class GameService {
   private readonly _score = signal(0);
   private readonly _gameMode = signal<Mode>(FLAG_GAME_MODE);
   private readonly _answerMode = signal<Mode>(QUIZ_ANSWER_MODE);
-  private readonly _sound = signal<boolean>(true);
+ 
   private readonly _round = signal<number>(1);
   private readonly _options = signal<Country[]>([]);
   private readonly _showInvalidBanner = signal<boolean>(false);
@@ -28,7 +30,7 @@ export class GameService {
   readonly score = this._score.asReadonly();
   readonly gameMode = this._gameMode.asReadonly();
   readonly answerMode = this._answerMode.asReadonly();
-  readonly sound = this._sound.asReadonly();
+ 
   readonly round = this._round.asReadonly();
   readonly options = this._options.asReadonly();
   readonly showInvalidBanner = this._showInvalidBanner.asReadonly();
@@ -47,7 +49,10 @@ export class GameService {
     ),
   );
 
-  constructor(private countryService: CountryService) {
+  constructor(
+    private countryService: CountryService,
+    private gameSoundService: GameSoundService,
+  ) {
     this.loadCountries();
     this.loadTargetAndOptions();
 
@@ -71,10 +76,6 @@ export class GameService {
 
   setAnswerMode(mode: Mode) {
     this._answerMode.set(mode);
-  }
-
-  toggleSound() {
-    this._sound.update((sound) => !sound);
   }
 
   setTargetCountry(country: Country) {
@@ -153,7 +154,9 @@ export class GameService {
     if (valid) {
       this.incrementStrike();
       this.incrementScore();
+      this.gameSoundService.correct();
     } else {
+      this.gameSoundService.wrong();
       this._strike.set(0);
     }
     return valid;
@@ -161,5 +164,6 @@ export class GameService {
 
   skipRound() {
     this.loadTargetAndOptions();
+    this.gameSoundService.tick();
   }
 }
