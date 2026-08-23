@@ -1,7 +1,7 @@
 <div class="flag-wrapper">
   <span>ROUND {{ round() || 0 }}</span>
   <div class="flag">
-    <img src="{{ flagSrc() }}" alt="{{ country()?.name || 'Flag' }}" />
+    <img #flagImg src="{{ flagSrc() }}" alt="{{ country()?.name || 'Flag' }}" />
     @if (gameService.showInvalidBanner()) {
       <div class="invalid-banner">
         <h1>Not quite!</h1>
