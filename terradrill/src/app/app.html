@@ -1,1 +1,11 @@
-<div></div>
+<div class="app">
+  <app-header />
+  <main class="game">
+    <app-flag [country]="gameService.targetCountry()" [round]="gameService.round()" />
+    <app-quiz
+      [target]="gameService.targetCountry()"
+      [options]="gameService.options()"
+      (quizAnswered)="onQuizAnswered($event)"
+    />
+  </main>
+</div>

@@ -1,0 +1,18 @@
+<div class="flag-wrapper">
+  <span>ROUND {{ round() || 0 }}</span>
+  <div class="flag">
+    <img #flagImg src="{{ flagSrc() }}" alt="{{ country()?.name || 'Flag' }}" />
+    @if (gameService.showInvalidBanner()) {
+      <div class="invalid-banner">
+        <h1>Not quite!</h1>
+        <span>It's {{ country()?.name }}</span>
+      </div>
+    }
+    @if (gameService.showValidBanner()) {
+      <div class="valid-banner">
+        <h1>Correct!</h1>
+        <span>It's {{ country()?.name }}</span>
+      </div>
+    }
+  </div>
+</div>

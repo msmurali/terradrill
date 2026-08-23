@@ -1,0 +1,46 @@
+<header>
+  <div class="logo-wrapper">
+    <!-- logo -->
+    <div class="logo">
+      <img src="assets/globe.svg" alt="TerraDrill" />
+      <h1>Terra</h1>
+      <h1>Drill</h1>
+    </div>
+  </div>
+  <div class="btn-group">
+    <!-- score -->
+    <div class="score">
+      <span class="text-muted">Score</span>
+      <span>{{ gameService.score() }}</span>
+      <span>/</span>
+      <span>{{ gameService.round() }}</span>
+    </div>
+    <!-- strike -->
+    <div class="strike">
+      <img src="assets/fire.svg" alt="Strike" />
+      <span>{{ gameService.strike() }}</span>
+    </div>
+    <!-- sound -->
+    <button class="sound-btn" (click)="onChangeSound()">
+      @if (gameSoundService.sound()) {
+        <img src="assets/speaker.svg" alt="Sound On" />
+      } @else {
+        <img src="assets/speaker-cross.svg" alt="Sound Off" />
+      }
+    </button>
+  </div>
+</header>
+
+<!-- Mode Switcher -->
+<div class="mode">
+  <app-mode-switcher
+    [modes]="gameModes"
+    (modeChanged)="onGameModeChange($event)"
+    [activeMode]="gameService.gameMode()"
+  />
+  <app-mode-switcher
+    [modes]="answerModes"
+    (modeChanged)="onAnswerModeChange($event)"
+    [activeMode]="gameService.answerMode()"
+  />
+</div>

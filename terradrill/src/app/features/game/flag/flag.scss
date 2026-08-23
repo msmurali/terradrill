@@ -1,0 +1,62 @@
+.flag-wrapper {
+  background-color: color-mix(in srgb, var(--background-btn) 5%, transparent);
+  border: var(--border-btn);
+  border-radius: var(--radius-lg);
+
+  span {
+    display: inline-block;
+    padding: var(--space-6) 0 0 var(--space-6);
+    color: var(--text-muted);
+  }
+
+  .flag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem var(--space-6) 6rem var(--space-6);
+    position: relative;
+
+    img {
+      width: 80%;
+    }
+
+    @mixin banner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--base);
+      opacity: 0.9;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      padding: var(--space-6);
+    }
+
+    .invalid-banner {
+      @include banner;
+      border-top: 1px solid var(--invalid);
+
+      span {
+        padding: 0;
+      }
+
+      h1 {
+        color: var(--invalid);
+        margin-bottom: 0;
+      }
+    }
+
+    .valid-banner {
+      @include banner;
+      border-top: 1px solid var(--valid);
+
+      span {
+        padding: 0;
+      }
+
+      h1 {
+        color: var(--valid);
+        margin-bottom: 0;
+      }
+    }
+  }
+}

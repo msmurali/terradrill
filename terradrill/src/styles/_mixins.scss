@@ -1,0 +1,9 @@
+@mixin pill {
+  height: var(--pill-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: var(--background-btn);
+  border: var(--border-btn);
+}
