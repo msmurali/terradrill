@@ -134,3 +134,15 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+/* globe.gl injects scene-container/canvas outside Angular's template, so they
+   carry no _ngcontent attribute and component styles cannot reach them. */
+.globe-host {
+  overflow: hidden;
+
+  > div,
+  canvas {
+    max-width: 100% !important;
+    display: block;
+  }
+}

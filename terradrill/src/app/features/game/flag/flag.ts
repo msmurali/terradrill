@@ -1,6 +1,7 @@
 import { Component, computed, effect, ElementRef, input, viewChild } from '@angular/core';
 import { Country } from '../../../interfaces/country.interface';
 import { GameService } from '../../../services/game.service';
+import { flagUrl } from '../../../utils/flag-url.util';
 
 const FLIP_MS = 520;
 
@@ -13,10 +14,7 @@ const FLIP_MS = 520;
 export class Flag {
   round = input.required<number>();
   country = input.required<Country | null>();
-  flagSrc = computed(() => {
-    const code = this.country()?.code;
-    return `https://flagcdn.com/${code}.svg`;
-  });
+  flagSrc = computed(() => flagUrl(this.country()?.code));
 
   private readonly flagImg = viewChild<ElementRef<HTMLImageElement>>('flagImg');
 

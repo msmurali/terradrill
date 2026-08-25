@@ -1,7 +1,19 @@
 <div class="app">
   <app-header />
   <main class="game">
-    <app-flag [country]="gameService.targetCountry()" [round]="gameService.round()" />
+    @if (gameService.gameMode()?.mode === gameModes.FLAG) {
+      <app-flag [country]="gameService.targetCountry()" [round]="gameService.round()" />
+    } @else {
+      <!-- three.js is ~600kB; keep it out of the initial bundle. -->
+      @defer (on immediate) {
+        <app-globe
+          [country]="gameService.targetCountry()"
+          [round]="gameService.round()"
+        ></app-globe>
+      } @placeholder {
+        <div class="globe-placeholder">Loading globe…</div>
+      }
+    }
     <app-quiz
       [target]="gameService.targetCountry()"
       [options]="gameService.options()"

@@ -1,0 +1,120 @@
+@use 'mixins' as *;
+
+.globe-wrapper {
+  position: relative;
+  background-color: color-mix(in srgb, var(--background-btn) 5%, transparent);
+  border: var(--border-btn);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: var(--space-6);
+}
+
+.globe-round {
+  display: block;
+  margin-bottom: var(--space-4);
+  color: var(--text-muted);
+}
+
+.globe-host {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  /* Vertical swipes scroll the page rather than being eaten by the canvas. */
+  touch-action: pan-y;
+}
+
+.invalid-banner,
+.valid-banner {
+  @include banner;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+
+  h1 {
+    margin: 0 0 var(--space-1);
+    font-size: 1.25rem;
+  }
+
+  span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 700px) {
+    gap: var(--space-4);
+    padding: var(--space-6);
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  }
+}
+
+.banner-text {
+  min-width: 0;
+}
+
+.invalid-banner {
+  border-top: 1px solid var(--invalid);
+
+  h1 {
+    color: var(--invalid);
+  }
+}
+
+.valid-banner {
+  border-top: 1px solid var(--valid);
+
+  h1 {
+    color: var(--valid);
+  }
+}
+
+.banner-flag {
+  width: 44px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+
+  @media (min-width: 700px) {
+    width: 64px;
+  }
+}
+
+.globe-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+  padding: var(--gutter);
+  background-color: color-mix(in srgb, var(--base) 85%, transparent);
+  color: var(--text-muted);
+
+  h1 {
+    margin: 0;
+    color: var(--invalid);
+  }
+}
+
+.retry-button {
+  padding: var(--space-2) var(--space-5);
+  background-color: var(--background-btn);
+  border: var(--border-btn);
+  border-radius: var(--radius-full);
+  color: var(--text-body);
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background-color: transparent;
+  }
+}

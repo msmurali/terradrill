@@ -1,6 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 import { Subject, switchMap, tap, timer } from 'rxjs';
-import { FLAG_GAME_MODE, QUIZ_ANSWER_MODE } from '../core/modes';
+import { FLAG_GAME_MODE, GameMode, QUIZ_ANSWER_MODE } from '../core/modes';
 import { Answer } from '../interfaces/answer';
 import { Country } from '../interfaces/country.interface';
 import { Mode } from '../interfaces/mode';
@@ -9,6 +9,7 @@ import { CountryService } from './country-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GameSound } from '../core/game-sound';
 import { GameSoundService } from './game-sound.service';
+import { GeoService } from './geo.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameService {
@@ -37,6 +38,24 @@ export class GameService {
   readonly showValidBanner = this._showValidBanner.asReadonly();
   readonly freeze = this._freeze.asReadonly();
 
+  /**
+   * Countries eligible this mode. World Map can only ask about countries the
+   * 110m geometry can actually draw — the micro-states have no polygon, so a
+   * round targeting one would highlight nothing and be unanswerable.
+   */
+  readonly pool = computed(() => {
+    const all = this.countryService.all();
+
+    if (this._gameMode().mode !== GameMode.WORLD_MAP) return all;
+
+    const renderable = this.geoService.renderableCodes();
+    // Before the GeoJSON lands there is nothing to filter against; fall back
+    // to the full list rather than emptying the pool.
+    if (!renderable.size) return all;
+
+    return all.filter((c) => renderable.has(c.code));
+  });
+
   readonly answered$ = new Subject<Answer>();
   readonly advance$ = this.answered$.pipe(
     switchMap(({ target, answer }) =>
@@ -52,6 +71,7 @@ export class GameService {
   constructor(
     private countryService: CountryService,
     private gameSoundService: GameSoundService,
+    private geoService: GeoService,
   ) {
     this.loadCountries();
     this.loadTargetAndOptions();
@@ -71,7 +91,14 @@ export class GameService {
   }
 
   setGameMode(mode: Mode) {
+    if (mode.mode === this._gameMode().mode) return;
+
     this._gameMode.set(mode);
+
+    // The unasked list belongs to the old mode; keeping it would leak
+    // countries the new mode cannot use.
+    this.loadCountries();
+    this.loadTargetAndOptions();
   }
 
   setAnswerMode(mode: Mode) {
@@ -104,7 +131,7 @@ export class GameService {
   }
 
   loadCountries() {
-    this.countries.set(this.countryService.all());
+    this.countries.set(this.pool());
   }
 
   pickRandomCountry(): Country {
@@ -121,6 +148,8 @@ export class GameService {
 
   pickOptions(pickedCountry: Country) {
     const options = [pickedCountry];
+    // Distractors come from every country — they are only ever text, so they
+    // do not need drawable geometry.
     const remainingCountries = this.countryService
       .all()
       .filter((c) => c.code !== pickedCountry.code);

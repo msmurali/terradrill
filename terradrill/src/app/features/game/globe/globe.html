@@ -1,0 +1,38 @@
+<div class="globe-wrapper">
+  <span class="globe-round">ROUND {{ round() || 0 }}</span>
+
+  <!-- Kept mounted in every state so the canvas host is never torn down. -->
+  <div #globeHost class="globe-host"></div>
+
+  @if (geoService.status() === 'error') {
+    <div class="globe-overlay">
+      <h1>Map data didn't load</h1>
+      <span>Check your connection and try again.</span>
+      <button class="retry-button" (click)="geoService.retry()">Retry</button>
+    </div>
+  } @else if (geoService.status() !== 'ready') {
+    <div class="globe-overlay">
+      <span>Loading map…</span>
+    </div>
+  }
+
+  @if (gameService.showInvalidBanner()) {
+    <div class="invalid-banner">
+      <img class="banner-flag" [src]="flagSrc()" [alt]="country()?.name || 'Flag'" />
+      <div class="banner-text">
+        <h1>Not quite!</h1>
+        <span>It's {{ country()?.name }}</span>
+      </div>
+    </div>
+  }
+
+  @if (gameService.showValidBanner()) {
+    <div class="valid-banner">
+      <img class="banner-flag" [src]="flagSrc()" [alt]="country()?.name || 'Flag'" />
+      <div class="banner-text">
+        <h1>Correct!</h1>
+        <span>It's {{ country()?.name }}</span>
+      </div>
+    </div>
+  }
+</div>
