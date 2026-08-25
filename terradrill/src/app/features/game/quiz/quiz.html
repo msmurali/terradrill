@@ -1,6 +1,14 @@
 <div class="quiz">
-  <span class="quiz-tag">Flag Quiz</span>
-  <h1 class="quiz-question">Which country flies this flag?</h1>
+  <span class="quiz-tag"
+    >{{ gameService.gameMode()?.mode === gameModes.WORLD_MAP ? 'World Map' : 'Flag' }} Quiz</span
+  >
+  <h1 class="quiz-question">
+    {{
+      gameService.gameMode()?.mode === gameModes.WORLD_MAP
+        ? 'Which country is highlighted?'
+        : 'Which country flies this flag?'
+    }}
+  </h1>
   <ul class="quiz-options">
     @for (option of options(); track option.code) {
       <li
@@ -16,7 +24,11 @@
       </li>
     }
   </ul>
-  <button class="skip-button" (click)="gameService.skipRound()">
+  <button
+    class="skip-button"
+    (click)="gameService.skipRound()"
+    [disabled]="answered() && gameService.freeze()"
+  >
     <span>Skip round &nbsp;</span>
     <svg
       data-dc-tpl="99"

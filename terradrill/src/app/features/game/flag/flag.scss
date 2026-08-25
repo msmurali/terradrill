@@ -1,3 +1,5 @@
+@use 'mixins' as *;
+
 .flag-wrapper {
   background-color: color-mix(in srgb, var(--background-btn) 5%, transparent);
   border: var(--border-btn);
@@ -18,17 +20,6 @@
 
     img {
       width: 80%;
-    }
-
-    @mixin banner {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: var(--base);
-      opacity: 0.9;
-      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-      padding: var(--space-6);
     }
 
     .invalid-banner {

@@ -19,8 +19,12 @@
   }
 
   app-flag,
+  app-globe,
   app-quiz {
     display: block;
+    /* Grid items default to min-width:auto and refuse to shrink below their
+       content. The globe's canvas has a fixed inline width, so without this
+       the column cannot get narrower and the globe never shrinks. */
     min-width: 0;
   }
 }

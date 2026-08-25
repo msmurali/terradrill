@@ -7,3 +7,16 @@
   background-color: var(--background-btn);
   border: var(--border-btn);
 }
+
+/// Feedback strip pinned to the bottom of a game card.
+/// Set the accent border-top at the call site.
+@mixin banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--base);
+  opacity: 0.95;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: var(--space-6);
+}

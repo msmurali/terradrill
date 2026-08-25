@@ -3,6 +3,7 @@ import { Country } from '../../../interfaces/country.interface';
 import { Answer } from '../../../interfaces/answer';
 import { GameService } from '../../../services/game.service';
 import { JsonPipe } from '@angular/common';
+import { GameMode } from '../../../core/modes';
 
 @Component({
   selector: 'app-quiz',
@@ -10,6 +11,8 @@ import { JsonPipe } from '@angular/common';
   styleUrl: './quiz.scss',
 })
 export class Quiz {
+  readonly gameModes = GameMode;
+  
   target = input.required<Country | null>();
   options = input.required<Country[]>();
   quizAnswered = output<Answer>();

@@ -57,5 +57,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    &[disabled] {
+      color: color-mix(in srgb, var(--text-muted) 75%, transparent);
+    }
   }
 }
