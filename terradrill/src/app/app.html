@@ -14,10 +14,6 @@
         <div class="globe-placeholder">Loading globe…</div>
       }
     }
-    <app-quiz
-      [target]="gameService.targetCountry()"
-      [options]="gameService.options()"
-      (quizAnswered)="onQuizAnswered($event)"
-    />
+    <app-answer-panel></app-answer-panel>
   </main>
 </div>

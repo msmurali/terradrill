@@ -3,7 +3,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": []
+    "types": [
+      "dom-speech-recognition"
+    ]
   },
   "include": [
     "src/**/*.ts"

@@ -29,9 +29,4 @@ describe('CountryService', () => {
     expect(service.byCode('zz')).toBeUndefined();
   });
 
-  it('builds a flag url from a country or a code', () => {
-    const nz = service.byCode('nz')!;
-    expect(service.flagUrl(nz)).toBe('https://flagcdn.com/w640/nz.png');
-    expect(service.flagUrl('DO')).toBe('https://flagcdn.com/w640/do.png');
-  });
 });

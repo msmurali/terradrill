@@ -1,1 +1,52 @@
-<p>voice works!</p>
+<div class="voice">
+  <div class="voice-wrapper">
+    @if (speechRecognitionService.supported) {
+      <button
+        type="button"
+        class="mic-circle"
+        [class.listening]="speechRecognitionService.listening()"
+        [attr.aria-pressed]="speechRecognitionService.listening()"
+        aria-label="Tap to speak"
+        [disabled]="gameService.freeze()"
+        (click)="toggleListening()"
+      >
+        <svg class="mic-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M12 2a3 3 0 013 3v6a3 3 0 01-6 0V5a3 3 0 013-3ZM19 10v1a7 7 0 01-14 0v-1M12 19v3M8 22h8"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <div class="voice-text">
+        @if (speechRecognitionService.listening()) {
+          <span class="listening">Listening...</span>
+        } @else {
+          <span class="tap-to-speak">Tap to Speak</span>
+        }
+
+        @if (errorMessage(); as error) {
+          <span class="sub-title voice-error">{{ error }}</span>
+        } @else if (unmatched()) {
+          <span class="sub-title voice-error">
+            Heard "{{ speechRecognitionService.transcript() }}" — that's not one of the
+            options. Tap to try again.
+          </span>
+        } @else if (speechRecognitionService.transcript()) {
+          <span class="sub-title">Heard: "{{ speechRecognitionService.transcript() }}"</span>
+        } @else {
+          <span class="sub-title">Say the country name out loud</span>
+        }
+      </div>
+    } @else {
+      <div class="voice-text">
+        <span class="tap-to-speak">Voice isn't available here</span>
+        <span class="sub-title">
+          This browser doesn't support speech recognition — switch to Quiz mode to play.
+        </span>
+      </div>
+    }
+  </div>
+</div>

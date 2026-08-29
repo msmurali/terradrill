@@ -1,9 +1,8 @@
-import { Component, computed, effect, input, OnInit, output, signal } from '@angular/core';
-import { Country } from '../../../interfaces/country.interface';
-import { Answer } from '../../../interfaces/answer';
-import { GameService } from '../../../services/game.service';
-import { JsonPipe } from '@angular/common';
+import { Component, effect, input, output, signal } from '@angular/core';
 import { GameMode } from '../../../core/modes';
+import { Answer } from '../../../interfaces/answer';
+import { Country } from '../../../interfaces/country.interface';
+import { GameService } from '../../../services/game.service';
 
 @Component({
   selector: 'app-quiz',
@@ -12,7 +11,7 @@ import { GameMode } from '../../../core/modes';
 })
 export class Quiz {
   readonly gameModes = GameMode;
-  
+
   target = input.required<Country | null>();
   options = input.required<Country[]>();
   quizAnswered = output<Answer>();
@@ -22,7 +21,7 @@ export class Quiz {
 
   constructor(readonly gameService: GameService) {
     effect(() => {
-      const target = this.target();
+      this.target();
       this.answered.set(false);
     });
   }
