@@ -1,0 +1,30 @@
+.answer-panel {
+  &-tag {
+    color: var(--accent-from);
+    font-weight: 500;
+    font-family: inherit;
+  }
+
+  &-question {
+    margin-top: var(--space-5);
+  }
+
+  .skip-button {
+    outline: none;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    margin-top: var(--space-6);
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &[disabled] {
+      color: color-mix(in srgb, var(--text-muted) 75%, transparent);
+      cursor: not-allowed;
+    }
+  }
+}
